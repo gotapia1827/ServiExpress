@@ -1,0 +1,45 @@
+{% extends '../index_master.html' %}
+{% block content %}
+    <!-- page content -->
+        <div class="right_col" role="main">
+          <h1>Lista de usuarios creados</h1>
+          <br>
+            <div>
+              <form action="" method="POST">
+                {% csrf_token %}
+                <input type="text" name="keyword" id="keyword" class="form-control" style="width: 150px; display: inline-block;">
+                <button type="submit" name="search" class="btn btn-success"><i class="fa fa-search"></i></button>
+              </form>
+            </div>
+          <br>
+          <div class="table-responsive">
+            <table class="table table-sm border-dark">
+              <thead>
+                <tr>
+                  <th scope="col">ID Unico</th>
+                  <th scope="col">Usuario</th>
+                  <th scope="col">Ultimo Acceso</th>
+                  <th scope="col">Dia de Creacion</th>
+                  <th scope="col">Tipo de Usuario</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for u in usuarios %}
+                <tr>
+                  <th scope="row">{{ u.id }}</th>
+                  <td>{{ u.username }}</td>
+                  <td>{{ u.last_login }}</td>
+                  <td>{{ u.date_joined }}</td>
+                  <td>{{ u.is_superuser }}</td>
+                  <td>
+                    <button title="Actualizar" class="btn btn-warning" onclick="window.location.href='actualizar/{{u.id}}'"><i class="fa fa-refresh"></i></a>
+                    <button title="Eliminar" class="btn btn-danger" onclick="window.location.href='eliminar/{{u.id}}'"><i class="fa fa-close"></i></a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>          
+            </table>
+          </div>
+        </div>
+    <!-- /page content -->
+{% endblock %}

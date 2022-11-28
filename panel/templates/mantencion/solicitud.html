@@ -1,0 +1,49 @@
+{% extends '../index_master.html' %}
+{% block content %}
+    <!-- page content -->
+        <div class="right_col" role="main">
+          <h1>Lista de solicitudes creadas</h1>
+          <br>
+            <div>
+              <form action="" method="POST">
+                {% csrf_token %}
+                <input type="text" name="keyword" id="keyword" class="form-control" style="width: 150px; display: inline-block;">
+                <button type="submit" name="search" class="btn btn-success"><i class="fa fa-search"></i></button>
+              </form>
+            </div>
+          <br>
+          <div class="table-responsive">
+            <table class="table table-sm border-dark">
+              <thead>
+                <tr>
+                  <th scope="col">ID Unico</th>
+                  <th scope="col">Marca</th>
+                  <th scope="col">Modelo</th>                  
+                  <th scope="col">Patente</th>
+                  <th scope="col">Fecha de Ingreso</th>
+                  <th scope="col">Falla</th>
+                  <th scope="col">Comentarios</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for u in solicitud %}
+                <tr>
+                  <th scope="row">{{ u.id }}</th>
+                  <td>{{ u.marca }}</td>
+                  <td>{{ u.modelo }}</td>
+                  <td>{{ u.patente }}</td>
+                  <td>{{ u.f_ingreso }}</td>
+                  <td>{{ u.falla }}</td>
+                  <td>{{ u.descripcion }}</td>
+                  <td>
+                    <button title="Asignar" class="btn btn-success" onclick="window.location.href='asignar/{{u.id}}'"><i class="fa fa-check"></i></a>
+                    <button title="Eliminar" class="btn btn-danger" onclick="window.location.href='eliminaragenda/{{u.id}}'"><i class="fa fa-close"></i></a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>          
+            </table>
+          </div>
+        </div>
+    <!-- /page content -->
+{% endblock %}

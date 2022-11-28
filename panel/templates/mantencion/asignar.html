@@ -1,0 +1,131 @@
+{% extends '../index_master.html' %}
+{% block content %}
+<!-- page content -->
+<div class="right_col" role="main">
+  <h1>Asignacion de Trabajos</h1>
+  <br>
+  <div class="container">
+    <div class="abs-center">
+      <form action="" method="POST">
+        {% csrf_token %}
+        <div class="form-group row">
+            <label for="nombre" class="col-4 col-form-label">ID Solicitud</label> 
+            <div class="col-4">
+              <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-lock"></i>                  
+                </div>
+                <select name="id" id="id" class="form-control">
+                {% for u in solicitudes %}
+                    <option value="{{u.id}}" {% if u.id == solicitud.id %} selected {% endif %}>{{u.id}}</option>
+                {% endfor %}
+                </select>
+              </div>                          
+            </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="marca" class="col-4 col-form-label">Marca</label> 
+          <div class="col-4">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="fa fa-car"></i>
+                </div>
+              </div> 
+              <input id="marca" name="marca" type="text" class="form-control" value="{{solicitud.marca}}">
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="modelo" class="col-4 col-form-label">Modelo</label> 
+          <div class="col-4">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="fa fa-car"></i>
+                </div>
+              </div> 
+              <input id="modelo" name="modelo" type="text" class="form-control" value="{{solicitud.modelo}}">
+            </div>
+          </div>
+        </div>       
+        <div class="form-group row">
+          <label for="patente" class="col-4 col-form-label">Patente</label> 
+          <div class="col-4">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="fa fa-car"></i>
+                </div>
+              </div> 
+              <input id="patente" name="patente" type="text" class="form-control" value="{{solicitud.patente}}">
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="f_ingreso" class="col-4 col-form-label">Fecha de Ingreso</label> 
+          <div class="col-4">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="fa fa-car"></i>
+                </div>
+              </div> 
+              <input id="f_ingreso" name="f_ingreso" type="date" class="form-control" value="{{solicitud.f_ingreso}}">
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="chasis" class="col-4 col-form-label">Chasis</label> 
+          <div class="col-4">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="fa fa-car"></i>
+                </div>
+              </div> 
+              <input id="chasis" name="chasis" type="text" class="form-control" value="{{solicitud.chasis}}">
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="falla" class="col-4 col-form-label">Tipo de Falla</label> 
+          <div class="col-4">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="fa fa-car"></i>
+                </div>
+              </div> 
+              <input id="falla" name="falla" type="text" class="form-control" value="{{solicitud.falla}}">
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="descripcion" class="col-4 col-form-label">Trabajo Realizado</label> 
+          <div class="col-4">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="fa fa-bookmark"></i>
+                </div>
+              </div> 
+              <div class="col-10">
+                <textarea id="descripcion" name="descripcion" cols="40" rows="5" class="form-control">{{solicitud.descripcion}}</textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="offset-4 col-8">
+            <button name="submit" type="submit" class="btn btn-warning">Actualizar Usuario</button>
+            <button onclick="history.back(); return false;" class="btn btn-info">Cancelar</button>
+          </div>
+        </div>
+      </form>  
+    </div>            
+  </div>                  
+</div>
+<!-- /page content -->
+{% endblock %}
